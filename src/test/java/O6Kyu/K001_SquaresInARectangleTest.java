@@ -31,7 +31,7 @@ class K001_SquaresInARectangleTest {
     @DisplayName("Introducing invalid parameters cause IllegalArgumentException")
     @ParameterizedTest
     @CsvFileSource(resources = "/01_Test_Arguments_xSide_ySide_illegal")
-    void test01(int xSide, int ySide, String message){
+    void testIncorrectValues(int xSide, int ySide, String message){
         Throwable throwable = assertThrows(IllegalArgumentException.class,
                                            ()->findSquares(xSide,ySide));
         assertThat(throwable.getMessage(),containsStringIgnoringCase(message));
@@ -42,8 +42,29 @@ class K001_SquaresInARectangleTest {
     @DisplayName("Squares in a Rectangle")
     @ParameterizedTest
     @CsvFileSource(resources = "/02_Test_xSide_ySide_Result_CorrectArguments")
-    void test2(int xSide, int ySide, int result){
+    void testValuesChecked(int xSide, int ySide, int result){
         assertEquals(result, findSquares(xSide,ySide));
+    }
+
+    @DisplayName("Squares in a Rectangle first solution using Streams and Reduce")
+    @ParameterizedTest
+    @CsvFileSource(resources = "/02_Test_xSide_ySide_Result_CorrectArguments")
+    void test01(int xSide, int ySide, int result){
+        assertEquals(result, findSquaresLegalArgSides(xSide,ySide));
+    }
+
+    @DisplayName("Second Solution using map and sum")
+    @ParameterizedTest
+    @CsvFileSource(resources = "/02_Test_xSide_ySide_Result_CorrectArguments")
+    void test02(int xSide, int ySide, int result){
+        assertEquals(result, findSquaresLegalArgSides2(xSide,ySide));
+    }
+
+    @DisplayName("third solution using recursion")
+    @ParameterizedTest
+    @CsvFileSource(resources = "/02_Test_xSide_ySide_Result_CorrectArguments")
+    void test03(int xSide, int ySide, int result){
+        assertEquals(result, findSquaresLegalArgSides3(xSide,ySide));
     }
 
 }

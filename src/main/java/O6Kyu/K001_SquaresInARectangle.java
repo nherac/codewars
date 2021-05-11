@@ -16,7 +16,7 @@ public class K001_SquaresInARectangle {
 
     }
 
-    private static long findSquaresLegalArgSides(int longestSide, int smallestSide){
+    public static long findSquaresLegalArgSides(int longestSide, int smallestSide){
 
          IntBinaryOperator operation = (subtotal, element)-> {
              //System.out.println("en el acumulator" + subtotal);
@@ -33,7 +33,7 @@ public class K001_SquaresInARectangle {
 
     }
 
-    private static long findSquaresLegalArgSides2(int longestSide, int smallestSide){
+    public static long findSquaresLegalArgSides2(int longestSide, int smallestSide){
 
         IntUnaryOperator operation = element-> {
                                                 var bigSide = (longestSide -smallestSide) + element;
@@ -45,5 +45,10 @@ public class K001_SquaresInARectangle {
                                    .sum();
         return result;
 
+    }
+
+    public static long findSquaresLegalArgSides3(int longestSide, int smallestSide){
+         return smallestSide == 0 ? 0 :
+                                    longestSide*smallestSide + findSquaresLegalArgSides3(longestSide--, smallestSide--);
     }
 }

@@ -28,9 +28,10 @@ findSquares(11,4)
 
 class K001_SquaresInARectangleTest {
 
-    @DisplayName("Introducing invalid parameters cause IllegalArgumentException")
+
     @ParameterizedTest
     @CsvFileSource(resources = "/01_Test_Arguments_xSide_ySide_illegal")
+    @DisplayName("Introducing invalid parameters cause IllegalArgumentException")
     void testIncorrectValues(int xSide, int ySide, String message){
         Throwable throwable = assertThrows(IllegalArgumentException.class,
                                            ()->findSquares(xSide,ySide));
@@ -66,6 +67,18 @@ class K001_SquaresInARectangleTest {
     void test03(int xSide, int ySide, int result){
         assertEquals(result, findSquaresLegalArgSides3(xSide,ySide));
     }
+
+    @DisplayName("Given-When-Then")
+    @ParameterizedTest
+    @CsvFileSource(resources = "/To-Do")
+    void testName(String... args) {
+        //Arrange
+        //Act
+        //Test
+
+    }
+
+
 
 }
 
